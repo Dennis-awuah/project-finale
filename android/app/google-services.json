@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "439093931907",
+    "project_id": "police1-cb227",
+    "storage_bucket": "police1-cb227.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439093931907:android:e261d186c1a4133a3b50b6",
+        "android_client_info": {
+          "package_name": "com.example.police_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy496WIsIxmPG7_zsvojqllOMBFLT4A38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,64 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+// Flutter version information for versioning the Android app
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode', '1')
+def flutterVersionName = localProperties.getProperty('flutter.versionName', '1.0')
+
+android {
+    namespace "com.example.police_app"
+    compileSdkVersion flutter.compileSdkVersion // Fetch from Flutter settings
+    ndkVersion flutter.ndkVersion // Fetch NDK version from Flutter settings
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        applicationId "com.example.police_app"
+        minSdkVersion flutter.minSdkVersion // Fetch from Flutter settings
+        targetSdkVersion flutter.targetSdkVersion // Fetch from Flutter settings
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            // For simplicity, using the debug signing config, but this should be replaced with a proper signing config for production builds.
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// Flutter plugin configuration
+flutter {
+    source '../..' // This points to the Flutter module directory
+}
+
+// Dependencies section (Add your dependencies here)
+dependencies {
+    // Include additional dependencies here, such as Firebase or AndroidX libraries, if needed.
+}

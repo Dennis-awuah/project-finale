@@ -1,0 +1,36 @@
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.0.0" // Replace with your version of Android Gradle Plugin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// To change the default build directory for all subprojects
+rootProject.buildDir = '../build'
+
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+
+    // Remove if no specific dependency on app module is required
+    if (project.name != 'app') {
+        evaluationDependsOn(':app')
+    }
+}
+
+// Register the clean task to clean the root project build directory
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
